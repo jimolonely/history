@@ -1,0 +1,2018 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-111673440-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <title>在我的世界</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="who,where,what">
+<meta property="og:type" content="website">
+<meta property="og:title" content="在我的世界">
+<meta property="og:url" content="http://http//jimolonely.github.io/page/6/index.html">
+<meta property="og:site_name" content="在我的世界">
+<meta property="og:description" content="who,where,what">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Jackpler">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="在我的世界" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><script src="/js/prism.js"></script>
+<script src="/js/prism-line-numbers.min.js"></script></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">在我的世界</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">home</a>
+        
+          <a class="main-nav-link" href="/archives">archives</a>
+        
+          <a class="main-nav-link" href="/about">about</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://http://jimolonely.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-java/048-spring-boot-multi-netcard" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/14/java/048-spring-boot-multi-netcard/" class="article-date">
+  <time datetime="2019-06-14T00:27:13.000Z" itemprop="datePublished">2019-06-14</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/14/java/048-spring-boot-multi-netcard/">spring cloud多网卡问题</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>多网卡问题。</p>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>主机上有2个网卡，一个是内网，一个是外网，外网无法访问内网。</p>
+<p>所以，如果多个网卡是互通的，那没什么问题，只要保证eureka中心的IP写对了就行。</p>
+<p>然而，事实是：2台机器，一台的应用绑定在内网IP，另一台在外网，这样虽然可以提供服务，但不是高可用了。</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>手动修改IP。</p>
+<h2 id="1-inetutils-preferred-networks"><a href="#1-inetutils-preferred-networks" class="headerlink" title="1.inetutils.preferred-networks"></a>1.inetutils.preferred-networks</h2><p>指定IP：注意是正则的，可以只写唯一的一部分</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">inetutils:</span></span><br><span class="line">      <span class="attr">preferred-networks:</span> <span class="number">192.168</span><span class="number">.1</span><span class="string">.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-inetutils-ignored-interfaces"><a href="#2-inetutils-ignored-interfaces" class="headerlink" title="2.inetutils.ignored-interfaces"></a>2.inetutils.ignored-interfaces</h2><p>忽略eth0网卡：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">inetutils:</span></span><br><span class="line">      <span class="attr">ignored-interfaces:</span> [<span class="string">&#x27;eth0&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>特别重要：这些配置只有在bootstrap配置里才起作用，也就是要先加载</strong></p>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>多网卡问题。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/06/14/java/048-spring-boot-multi-netcard/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/06/14/java/048-spring-boot-multi-netcard/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/06/14/java/048-spring-boot-multi-netcard/" data-id="cl1fw7flh00bivkd30b1pgqea" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/" rel="tag">spring cloud</a><span class="article-tag-list-count">5</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-git/005-gitlab-backup-config" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/12/git/005-gitlab-backup-config/" class="article-date">
+  <time datetime="2019-06-12T08:19:54.000Z" itemprop="datePublished">2019-06-12</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/12/git/005-gitlab-backup-config/">gitlab定时备份配置</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>在<a href="/2019/04/17/git/003-install-gitlab-server/" title="安装完gitlab server">安装完gitlab server</a> 后，备份是必不可少的。</p>
+<h1 id="常规备份"><a href="#常规备份" class="headerlink" title="常规备份"></a>常规备份</h1><p>根据<a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/raketasks/backup_restore.html#creating-a-backup-of-the-gitlab-system">官方文档</a>,我们只需要执行一个命令：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
+<p>就可以实现默认备份：</p>
+<ol>
+<li>备份目录： <code>/var/opt/gitlab/backups</code></li>
+<li>备份内容： <code>repo,uploads,builds,artifacts,pages,lfs objects,container register images</code></li>
+<li>打成tar包</li>
+<li>默认不删除以前的备份</li>
+</ol>
+<p>对于一百多个仓库，备份花了一个多小时，大小8.5GB。还是挺慢的。</p>
+<h1 id="关于备份的配置"><a href="#关于备份的配置" class="headerlink" title="关于备份的配置"></a>关于备份的配置</h1><p>位于<code>/etc/gitlab/gitlab.rb</code>的配置文件里有关于备份（Backup Settings）的配置. 也可以查看<a target="_blank" rel="noopener" href="https://docs.gitlab.com/omnibus/settings/backups.html">页面</a>.</p>
+<h2 id="指定备份目录"><a href="#指定备份目录" class="headerlink" title="指定备份目录"></a>指定备份目录</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">&#x27;backup_path&#x27;</span>] = <span class="string">&quot;/var/opt/gitlab/backups&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="保存日志时间"><a href="#保存日志时间" class="headerlink" title="保存日志时间"></a>保存日志时间</h2><p>针对本地备份文件有效，默认7天（604800秒）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">&#x27;backup_keep_time&#x27;</span>] = <span class="number">604800</span></span><br></pre></td></tr></table></figure>
+<h2 id="跳过某些模块"><a href="#跳过某些模块" class="headerlink" title="跳过某些模块"></a>跳过某些模块</h2><p>默认所有都会备份：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">db (database)</span><br><span class="line">uploads (attachments)</span><br><span class="line">repositories (Git repositories data)</span><br><span class="line">builds (CI job output logs)</span><br><span class="line">artifacts (CI job artifacts)</span><br><span class="line">lfs (LFS objects)</span><br><span class="line">registry (Container Registry images)</span><br><span class="line">pages (Pages content)</span><br></pre></td></tr></table></figure>
+<p>可以跳过：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-rake gitlab:backup:create SKIP=db,uploads</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="定时备份"><a href="#定时备份" class="headerlink" title="定时备份"></a>定时备份</h1><h2 id="定时备份配置"><a href="#定时备份配置" class="headerlink" title="定时备份配置"></a>定时备份配置</h2><p>每周日4点备份配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo crontab -e -u root</span><br><span class="line"><span class="number">0</span> <span class="number">4</span> * * <span class="number">7</span>  umask <span class="number">0077</span>; tar cfz /data/backups/$(date <span class="string">&quot;+etc-gitlab-\%s.tgz&quot;</span>) -C / etc/gitlab</span><br></pre></td></tr></table></figure>
+<p>恢复配置：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /etc/gitlab /etc/gitlab.$(date +%s)</span><br><span class="line">sudo tar -xf etc-gitlab-<span class="number">1399948539.</span>tar -C /</span><br></pre></td></tr></table></figure>
+
+<h2 id="定时备份数据"><a href="#定时备份数据" class="headerlink" title="定时备份数据"></a>定时备份数据</h2><p>每天早上2点生成备份：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su -</span><br><span class="line">crontab -e</span><br><span class="line"><span class="number">0</span> <span class="number">2</span> * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create CRON=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>CRON &#x3D; 1环境设置告诉备份脚本在没有错误时禁止所有进度输出。建议使用此方法来减少cron垃圾邮件.</p>
+<h1 id="刷新配置生效"><a href="#刷新配置生效" class="headerlink" title="刷新配置生效"></a>刷新配置生效</h1><p>我们需要<a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/administration/restart_gitlab.html#omnibus-gitlab-reconfigure">reconfig来生效配置</a>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+
+<h1 id="恢复备份"><a href="#恢复备份" class="headerlink" title="恢复备份"></a>恢复备份</h1><p>TODO</p>
+<p>默认备份日志输出：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># gitlab-rake gitlab:backup:create</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">14</span>:<span class="number">50</span>:<span class="number">02</span> +0800 -- Dumping database ... </span><br><span class="line">Dumping PostgreSQL database gitlabhq_production ... [DONE]</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">14</span>:<span class="number">50</span>:08 +0800 -- done</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">14</span>:<span class="number">50</span>:08 +0800 -- Dumping repositories ...</span><br><span class="line"> * logger/log ... [SKIPPED]</span><br><span class="line">[SKIPPED] Wiki</span><br><span class="line"> * yinjiaxin/suibian ... [SKIPPED]</span><br><span class="line">[SKIPPED] Wiki</span><br><span class="line"> * yinjiaxin/learngit ... [DONE]</span><br><span class="line">[SKIPPED] Wiki</span><br><span class="line"> * yuqin/yq ... [DONE]</span><br><span class="line">[SKIPPED] Wiki</span><br><span class="line">。。。</span><br><span class="line">。。。</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">05</span>:<span class="number">44</span> +0800 -- done</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">05</span>:<span class="number">44</span> +0800 -- Dumping uploads ... </span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">44</span> +0800 -- done</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">44</span> +0800 -- Dumping builds ... </span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">47</span> +0800 -- done</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">47</span> +0800 -- Dumping artifacts ... </span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">54</span> +0800 -- done</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">54</span> +0800 -- Dumping pages ... </span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">57</span> +0800 -- done</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">06</span>:<span class="number">57</span> +0800 -- Dumping lfs objects ... </span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">07</span>:<span class="number">00</span> +0800 -- done</span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">07</span>:<span class="number">00</span> +0800 -- Dumping container registry images ... </span><br><span class="line"><span class="number">2019</span>-<span class="number">06</span>-<span class="number">12</span> <span class="number">15</span>:<span class="number">07</span>:<span class="number">00</span> +0800 -- [DISABLED]</span><br><span class="line">Creating backup archive: <span class="number">1560323223_2019_06_12_11.10</span><span class="number">.0</span>-ee_gitlab_backup.tar ... done</span><br><span class="line">Uploading backup archive to remote storage  ... skipped</span><br><span class="line">Deleting tmp directories ... done</span><br><span class="line">done</span><br><span class="line">done</span><br><span class="line">done</span><br><span class="line">Deleting old backups ... skipping</span><br></pre></td></tr></table></figure>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>在<a href="/2019/04/17/git/003-install-gitlab-server/" title="安装完gitlab server">安装完gitlab server</a> 后，备份是必不可少的。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/06/12/git/005-gitlab-backup-config/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/06/12/git/005-gitlab-backup-config/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/06/12/git/005-gitlab-backup-config/" data-id="cl1fw7fjl004wvkd39fea0ml0" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a><span class="article-tag-list-count">7</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a><span class="article-tag-list-count">3</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-life/018-weekly-learn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/10/life/018-weekly-learn/" class="article-date">
+  <time datetime="2019-06-10T11:55:37.000Z" itemprop="datePublished">2019-06-10</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/10/life/018-weekly-learn/">2019-24-周报</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是2019年第24周周报.</p>
+<ol>
+<li><a href="/2019/06/10/java/047-springboot-boot-failed/" title="springboot启动失败原因分析">springboot启动失败原因分析</a>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Dream_angel_Z/article/details/45175621">重新认识3范式</a></p>
+<ol>
+<li>先看列是否满足原子性（1NF）</li>
+<li>再看非主键列是否完全依赖主键（2NF）</li>
+<li>再看传递依赖：是否非主键列之间不存在依赖（3NF）</li>
+</ol>
+</li>
+<li><a href="/2019/06/12/git/005-gitlab-backup-config/" title="gitlab定时备份配置">gitlab定时备份配置</a>
+</li>
+<li><a href="/2019/06/14/java/048-spring-boot-multi-netcard/" title="spring cloud多网卡问题">spring cloud多网卡问题</a>
+</li>
+<li><p>docker</p>
+<ol>
+<li>COPY的上下文环境，不允许copycontext之外的文件</li>
+<li>视图设置JVM参数失败，想到可以直接设置容器参数：-m ,但内存不足不能启动</li>
+<li>关于网络共通问题</li>
+<li>学会用<code>docker stats</code>查看服务资源消耗</li>
+<li>学会移除none的image镜像： <code>docker rmi $(docker images -f &quot;dangling=true&quot; -q)</code></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>这是2019年第24周周报.</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/06/10/life/018-weekly-learn/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/06/10/life/018-weekly-learn/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/06/10/life/018-weekly-learn/" data-id="cl1fw7fk60071vkd3hdb991dz" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/" rel="tag">life</a><span class="article-tag-list-count">32</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/week/" rel="tag">week</a><span class="article-tag-list-count">26</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-java/047-springboot-boot-failed" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/10/java/047-springboot-boot-failed/" class="article-date">
+  <time datetime="2019-06-10T11:50:50.000Z" itemprop="datePublished">2019-06-10</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/10/java/047-springboot-boot-failed/">springboot启动失败原因分析</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文记录下spring boot应用启动失败如何查找原因。</p>
+<h1 id="1-确保日志打印"><a href="#1-确保日志打印" class="headerlink" title="1.确保日志打印"></a>1.确保日志打印</h1><p>如果什么都没输出，那么肯定不好，可能是jar包冲突。</p>
+<p>如果日志很明确，那么没问题，但是没有日志时怎么办？</p>
+<h1 id="2-查看源码异常"><a href="#2-查看源码异常" class="headerlink" title="2.查看源码异常"></a>2.查看源码异常</h1><p>进入SpringApplication.java类，查看run方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> ConfigurableApplicationContext <span class="title function_">run</span><span class="params">(String... args)</span> &#123;</span><br><span class="line">	<span class="type">StopWatch</span> <span class="variable">stopWatch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StopWatch</span>();</span><br><span class="line">	stopWatch.start();</span><br><span class="line">	<span class="type">ConfigurableApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">	Collection&lt;SpringBootExceptionReporter&gt; exceptionReporters = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">	configureHeadlessProperty();</span><br><span class="line">	<span class="type">SpringApplicationRunListeners</span> <span class="variable">listeners</span> <span class="operator">=</span> getRunListeners(args);</span><br><span class="line">	listeners.starting();</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="type">ApplicationArguments</span> <span class="variable">applicationArguments</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultApplicationArguments</span>(</span><br><span class="line">				args);</span><br><span class="line">		<span class="type">ConfigurableEnvironment</span> <span class="variable">environment</span> <span class="operator">=</span> prepareEnvironment(listeners,</span><br><span class="line">				applicationArguments);</span><br><span class="line">		configureIgnoreBeanInfo(environment);</span><br><span class="line">		<span class="type">Banner</span> <span class="variable">printedBanner</span> <span class="operator">=</span> printBanner(environment);</span><br><span class="line">		context = createApplicationContext();</span><br><span class="line">		exceptionReporters = getSpringFactoriesInstances(</span><br><span class="line">				SpringBootExceptionReporter.class,</span><br><span class="line">				<span class="keyword">new</span> <span class="title class_">Class</span>[] &#123; ConfigurableApplicationContext.class &#125;, context);</span><br><span class="line">		prepareContext(context, environment, listeners, applicationArguments,</span><br><span class="line">				printedBanner);</span><br><span class="line">		refreshContext(context);</span><br><span class="line">		afterRefresh(context, applicationArguments);</span><br><span class="line">		stopWatch.stop();</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">this</span>.logStartupInfo) &#123;</span><br><span class="line">			<span class="keyword">new</span> <span class="title class_">StartupInfoLogger</span>(<span class="built_in">this</span>.mainApplicationClass)</span><br><span class="line">					.logStarted(getApplicationLog(), stopWatch);</span><br><span class="line">		&#125;</span><br><span class="line">		listeners.started(context);</span><br><span class="line">		callRunners(context, applicationArguments);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">		handleRunFailure(context, ex, exceptionReporters, listeners);</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(ex);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		listeners.running(context);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">		handleRunFailure(context, ex, exceptionReporters, <span class="literal">null</span>);</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(ex);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> context;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打个断点在catch里，可以看到启动失败的异常，而这通常不会输出到日志。</p>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本文记录下spring boot应用启动失败如何查找原因。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/06/10/java/047-springboot-boot-failed/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/06/10/java/047-springboot-boot-failed/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/06/10/java/047-springboot-boot-failed/" data-id="cl1fw7flj00bnvkd37tvy1ory" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a><span class="article-tag-list-count">3</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-java/046-springcloud-zipkin-service-not-found" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/09/java/046-springcloud-zipkin-service-not-found/" class="article-date">
+  <time datetime="2019-06-09T06:00:33.000Z" itemprop="datePublished">2019-06-09</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/09/java/046-springcloud-zipkin-service-not-found/">spring cloud zipkin 找不到服务</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>当使用sleuth+zipkin对spring cloud进行链路跟踪时，发现始终只有eureka一个服务能被zipkin server发现，<br>其他都不行，纠结了很久，最后终于发现了原因： zipkin的发送方式问题。</p>
+<h1 id="问题重现"><a href="#问题重现" class="headerlink" title="问题重现"></a>问题重现</h1><p>我们知道，最新的zipkin server已经不建议自己写服务端，所以运行完服务端一切正常，界面也可以访问：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar zipkin.jar</span><br></pre></td></tr></table></figure>
+
+<p>在spring cloud里的配置如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">ccb</span></span><br><span class="line">  <span class="comment"># 用于bus批量刷新的mq</span></span><br><span class="line">  <span class="attr">rabbitmq:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">5672</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">guest</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">guest</span></span><br><span class="line">  <span class="attr">zipkin:</span></span><br><span class="line">    <span class="attr">base-url:</span> <span class="string">http://localhost:9411</span></span><br><span class="line">  <span class="attr">sleuth:</span></span><br><span class="line">    <span class="attr">web:</span></span><br><span class="line">      <span class="attr">client:</span></span><br><span class="line">        <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">sampler:</span></span><br><span class="line">      <span class="attr">probability:</span> <span class="number">1.0</span> <span class="comment"># 全采样</span></span><br></pre></td></tr></table></figure>
+
+<p>maven依赖如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-zipkin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--config 的mq通信使用--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bus-amqp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-config-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>主要就是zipkin的依赖，zipkin包含了sleuth的依赖，所以不用重复引入。</p>
+<p>如果你现在看出哪里有问题，那么就可以不往下读了。</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>这样写，zipkin永远不能发现ccb这个服务，也就不存在监控了。</p>
+<p>经过查找资料，发现了<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-sleuth/1.3.x/multi/multi__sending_spans_to_zipkin.html">spring sleuth官方解释</a>:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Important</span><br><span class="line">spring-cloud-sleuth-stream is deprecated and should no longer be used. If spring-cloud-sleuth-zipkin is on the classpath then the app will generate and collect Zipkin-compatible traces. By <span class="keyword">default</span> it sends them via HTTP to a Zipkin server on <span class="title function_">localhost</span> <span class="params">(port <span class="number">9411</span>)</span>. If you depend on spring-rabbit or spring-kafka your app will send traces to a broker instead of http.</span><br><span class="line"></span><br><span class="line">翻译：</span><br><span class="line">默认，发送span给zipkin server是通过HTTP， 但是如果有rabbit或者kafka的依赖，则优先使用。</span><br></pre></td></tr></table></figure>
+
+<p>于是豁然开朗，为了支持config的批量刷新，我引入了rabbitmq，但是eureka没有引入，所以监控信息是发给消息队列了，所以本地zipkin server收不到。</p>
+<p>然后进一步，解决办法也很简单： 修改发送方式：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">zipkin:</span></span><br><span class="line">  <span class="attr">base-url:</span> <span class="string">http://localhost:9411</span></span><br><span class="line">  <span class="attr">sender:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">web</span> <span class="comment"># 另外2个是 rabbit和kafka</span></span><br></pre></td></tr></table></figure>
+<p>重启后，记得要发送完第一条调用后才能看到服务。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这个问题很简单，重要的是能从中总结出什么经验？</p>
+<ol>
+<li><p>确定这个问题涉及的范围： 用到了spring cloud的sluth和zipkin两个东西</p>
+</li>
+<li><p>借助于搜索引擎： 能google到当然最好，但是这个问题并没有搜到；</p>
+</li>
+<li><p>分别查找各自可能的原因： 既然别人没有分享这个问题，那只有我来了；</p>
+<ol>
+<li>我先到zipkin的issue去看有没有可能的原因，开始还以为是依赖问题；</li>
+<li>然后看了spring cloud的官方文档，才明白过来；</li>
+</ol>
+</li>
+<li><p>总结分享： 解决一个问题不算什么，解决一类问题说明触类旁通， 但不害怕一切问题才是制胜关键；</p>
+</li>
+</ol>
+<p>祝我失败得痛苦，成功得快乐。</p>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>当使用sleuth+zipkin对spring cloud进行链路跟踪时，发现始终只有eureka一个服务能被zipkin server发现，<br>其他都不行，纠结了很久，最后终于发现了原因： zipkin的发送方式问题。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/06/09/java/046-springcloud-zipkin-service-not-found/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/06/09/java/046-springcloud-zipkin-service-not-found/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/06/09/java/046-springcloud-zipkin-service-not-found/" data-id="cl1fw7flh00bgvkd3d87tg4re" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/" rel="tag">spring cloud</a><span class="article-tag-list-count">5</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zipkin/" rel="tag">zipkin</a><span class="article-tag-list-count">1</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-java/045-feign-pass-params" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/06/java/045-feign-pass-params/" class="article-date">
+  <time datetime="2019-06-06T00:16:25.000Z" itemprop="datePublished">2019-06-06</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/06/java/045-feign-pass-params/">feignclient传参</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文说明FeignClient传参的几种方式。</p>
+<p><a target="_blank" rel="noopener" href="https://yejg.top/2018/07/09/feign-client-parameter-transfer/#%E4%BC%A0%E5%AF%B9%E8%B1%A1--requestinteceptor">引用文章</a></p>
+<h1 id="传基本类型参数"><a href="#传基本类型参数" class="headerlink" title="传基本类型参数"></a>传基本类型参数</h1><p>使用@RequestParam，注意注解的value参数不可少，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;demo-service&quot;, fallback = DemoServiceFallback.class)</span> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">DemoService</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@RequestMapping(&quot;/demo-service/test1&quot;)</span></span><br><span class="line">  <span class="keyword">public</span> String <span class="title function_">test1</span><span class="params">(<span class="meta">@RequestParam(value = &quot;userName&quot;)</span> String userName, <span class="meta">@RequestParam(value = &quot;age&quot;)</span> <span class="type">int</span> age)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="传Map传参数"><a href="#传Map传参数" class="headerlink" title="传Map传参数"></a>传Map传参数</h1><p>参数太多的时候，上面的方式就要写一堆，可以直接上map<br>注意，需要加@RequestParam注解，但不需要加注解的value参数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/demo-service/test4&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test4</span><span class="params">(<span class="meta">@RequestParam</span> Map&lt;String,Object&gt; userMap)</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="传对象"><a href="#传对象" class="headerlink" title="传对象"></a>传对象</h1><p>Fegin传对象的时候，需要加@RequestBody注解，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/demo-service/test3&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test3</span><span class="params">(<span class="meta">@RequestBody</span> DemoServiceUser user)</span>;</span><br></pre></td></tr></table></figure>
+<p>注意，服务提供者的Controller的接收参数前也需要加@RequestBody注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/test3&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">test3</span><span class="params">(<span class="meta">@RequestBody(required = false)</span> User user, HttpServletRequest request)</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&quot;[test3]userName=&quot;</span> + user.getUserName() + <span class="string">&quot;, age=&quot;</span> + user.getAge();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@RequestBody接收的是一个Json对象的字符串，而不是一个Json对象<br>如果这时候要使用postman直接请求上面的test3接口，那么需要将Content-Type修改为application&#x2F;json </p>
+<p>这样做虽然解决了feign传对象的问题，但是直接请求&#x2F;test3接口就麻烦了，不能直接使用form-data的形式了。 这里使用RequestInteceptor来解决。</p>
+<h1 id="传对象-RequestInteceptor"><a href="#传对象-RequestInteceptor" class="headerlink" title="传对象 + RequestInteceptor"></a>传对象 + RequestInteceptor</h1><p>处理思路：feign发请求的时候，将json body转成query。<br>服务提供者的Controller的接收参数前&#x3D;&#x3D;不需要@RequestBody注解&#x3D;&#x3D;<br>在上例DemoService所在的项目中增加如下代码即可：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">YryzRequestInterceptor</span> <span class="keyword">implements</span> <span class="title class_">RequestInterceptor</span> &#123;</span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> ObjectMapper objectMapper;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">apply</span><span class="params">(RequestTemplate template)</span> &#123;</span><br><span class="line">      <span class="comment">// feign 不支持 GET 方法传 POJO, json body转query</span></span><br><span class="line">      <span class="keyword">if</span> (template.method().equals(<span class="string">&quot;GET&quot;</span>) &amp;&amp; template.body() != <span class="literal">null</span>) &#123;</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="type">JsonNode</span> <span class="variable">jsonNode</span> <span class="operator">=</span> objectMapper.readTree(template.body());</span><br><span class="line">              template.body(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">              Map&lt;String, Collection&lt;String&gt;&gt; queries = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">              buildQuery(jsonNode, <span class="string">&quot;&quot;</span>, queries);</span><br><span class="line">              template.queries(queries);</span><br><span class="line">          &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">              e.printStackTrace();</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">buildQuery</span><span class="params">(JsonNode jsonNode, String path, Map&lt;String, Collection&lt;String&gt;&gt; queries)</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!jsonNode.isContainerNode()) &#123; <span class="comment">// 叶子节点</span></span><br><span class="line">          <span class="keyword">if</span> (jsonNode.isNull()) &#123;</span><br><span class="line">              <span class="keyword">return</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          Collection&lt;String&gt; values = queries.get(path);</span><br><span class="line">          <span class="keyword">if</span> (<span class="literal">null</span> == values) &#123;</span><br><span class="line">              values = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">              queries.put(path, values);</span><br><span class="line">          &#125;</span><br><span class="line">          values.add(jsonNode.asText());</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (jsonNode.isArray()) &#123; <span class="comment">// 数组节点</span></span><br><span class="line">          Iterator&lt;JsonNode&gt; it = jsonNode.elements();</span><br><span class="line">          <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">              buildQuery(it.next(), path, queries);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          Iterator&lt;Map.Entry&lt;String, JsonNode&gt;&gt; it = jsonNode.fields();</span><br><span class="line">          <span class="keyword">while</span> (it.hasNext()) &#123;</span><br><span class="line">              Map.Entry&lt;String, JsonNode&gt; entry = it.next();</span><br><span class="line">              <span class="keyword">if</span> (StringUtils.hasText(path)) &#123;</span><br><span class="line">                  buildQuery(entry.getValue(), path + <span class="string">&quot;.&quot;</span> + entry.getKey(), queries);</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123; <span class="comment">// 根节点</span></span><br><span class="line">                  buildQuery(entry.getValue(), entry.getKey(), queries);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本文说明FeignClient传参的几种方式。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/06/06/java/045-feign-pass-params/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/06/06/java/045-feign-pass-params/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/06/06/java/045-feign-pass-params/" data-id="cl1fw7flg00bdvkd323in3cyv" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud/" rel="tag">spring cloud</a><span class="article-tag-list-count">5</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-life/017-weekly-learn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/06/03/life/017-weekly-learn/" class="article-date">
+  <time datetime="2019-06-03T12:41:45.000Z" itemprop="datePublished">2019-06-03</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/03/life/017-weekly-learn/">2019-23-周报</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是2019年第23周周报。</p>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000007535316">理解js async&#x2F;await</a>,以及<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise对象</a></p>
+</li>
+<li><p>练习算法题</p>
+</li>
+<li><a href="/2019/06/06/java/045-feign-pass-params/" title="feignclient传参">feignclient传参</a>
+</li>
+<li><a href="/2019/06/09/java/046-springcloud-zipkin-service-not-found/" title="spring cloud zipkin 找不到服务">spring cloud zipkin 找不到服务</a></li>
+</ol>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>这是2019年第23周周报。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/06/03/life/017-weekly-learn/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/06/03/life/017-weekly-learn/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/06/03/life/017-weekly-learn/" data-id="cl1fw7fk60070vkd33nqj4a1g" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-algorithm/003-lru-java" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/31/algorithm/003-lru-java/" class="article-date">
+  <time datetime="2019-05-31T00:50:04.000Z" itemprop="datePublished">2019-05-31</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/31/algorithm/003-lru-java/">java实现LRU算法</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文实现LRU算法，使用自带的LinkedHashMap 和 双链表+HashMap形式实现。</p>
+<h1 id="使用LinkedHashMap实现"><a href="#使用LinkedHashMap实现" class="headerlink" title="使用LinkedHashMap实现"></a>使用LinkedHashMap实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> jimo</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 19-5-30 下午8:18</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LruLinkedHasMap</span>&lt;K, V&gt; <span class="keyword">extends</span> <span class="title class_">LinkedHashMap</span>&lt;K, V&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> capacity;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">LruLinkedHasMap</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(<span class="number">16</span>, <span class="number">0.75f</span>, <span class="literal">true</span>);</span><br><span class="line">        <span class="built_in">this</span>.capacity = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="type">boolean</span> <span class="title function_">removeEldestEntry</span><span class="params">(Map.Entry&lt;K, V&gt; eldest)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;removeEldestEntry:(&quot;</span> + eldest.getKey() + <span class="string">&quot;,&quot;</span> + eldest.getValue() + <span class="string">&quot;)&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> size() &gt; capacity;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; lru = <span class="keyword">new</span> <span class="title class_">LruLinkedHasMap</span>&lt;&gt;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">lru.put(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">lru.put(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">System.out.println(lru.get(<span class="number">1</span>));</span><br><span class="line">lru.put(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">System.out.println(lru.get(<span class="number">2</span>));</span><br><span class="line">System.out.println(lru.get(<span class="number">3</span>));</span><br><span class="line">lru.put(<span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">System.out.println(lru.get(<span class="number">1</span>));</span><br><span class="line">System.out.println(lru.get(<span class="number">3</span>));</span><br><span class="line">System.out.println(lru.get(<span class="number">4</span>));</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">removeEldestEntry:(1,1)</span></span><br><span class="line"><span class="comment">removeEldestEntry:(1,1)</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">removeEldestEntry:(2,2)</span></span><br><span class="line"><span class="comment">null</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">removeEldestEntry:(1,1)</span></span><br><span class="line"><span class="comment">null</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="双链表-HashMap形式实现"><a href="#双链表-HashMap形式实现" class="headerlink" title="双链表+HashMap形式实现"></a>双链表+HashMap形式实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.jimo.algo.lru;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 使用双向链表+HashMap实现LRU， get和put都是O(1)复杂度</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> jimo</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 19-5-30 下午8:20</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyLru</span>&lt;K, V&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> capacity;</span><br><span class="line">    <span class="keyword">private</span> Node head;</span><br><span class="line">    <span class="keyword">private</span> Node tail;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;K, Node&gt; map;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MyLru</span><span class="params">(<span class="type">int</span> capacity)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.capacity = capacity;</span><br><span class="line">        <span class="built_in">this</span>.map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;(<span class="number">8</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">put</span><span class="params">(K k, V v)</span> &#123;</span><br><span class="line">        <span class="comment">// 如果链表为空</span></span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">null</span>) &#123;</span><br><span class="line">            head = <span class="keyword">new</span> <span class="title class_">Node</span>(k, v);</span><br><span class="line">            tail = head;</span><br><span class="line">            map.put(k, head);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> map.get(k);</span><br><span class="line">        <span class="comment">// 如果存在，则提到链表开始, 并更新值</span></span><br><span class="line">        <span class="keyword">if</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">            node.value = v;</span><br><span class="line">            removeToHead(node);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 否则新建一个节点到开始</span></span><br><span class="line">            <span class="type">Node</span> <span class="variable">newNode</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Node</span>(k, v);</span><br><span class="line">            <span class="comment">// 如果长度到了容量，需要去除结尾的节点</span></span><br><span class="line">            <span class="keyword">if</span> (map.size() &gt;= capacity) &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;移除末尾节点：[&quot;</span> + tail.key + <span class="string">&quot;,&quot;</span> + tail.value + <span class="string">&quot;]&quot;</span>);</span><br><span class="line">                map.remove(tail.key);</span><br><span class="line">                tail = tail.prev;</span><br><span class="line">                tail.next = <span class="literal">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 连到开始</span></span><br><span class="line">            map.put(k, newNode);</span><br><span class="line">            head.prev = newNode;</span><br><span class="line">            newNode.next = head;</span><br><span class="line">            head = newNode;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 访问时，如果缓存有，则返回并把该节点放到最前面</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> V <span class="title function_">get</span><span class="params">(K key)</span> &#123;</span><br><span class="line">        <span class="type">Node</span> <span class="variable">node</span> <span class="operator">=</span> map.get(key);</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        removeToHead(node);</span><br><span class="line">        <span class="keyword">return</span> node.value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">removeToHead</span><span class="params">(Node node)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (node == head) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (node == tail) &#123;</span><br><span class="line">            tail = node.prev;</span><br><span class="line">            tail.next = <span class="literal">null</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            node.prev.next = node.next;</span><br><span class="line">            node.next.prev = node.prev;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// set node to head</span></span><br><span class="line">        node.next = head;</span><br><span class="line">        head.prev = node;</span><br><span class="line">        node.prev = <span class="literal">null</span>;</span><br><span class="line">        head = node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">        Node prev;</span><br><span class="line">        Node next;</span><br><span class="line">        K key;</span><br><span class="line">        V value;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Node</span><span class="params">(K key, V value)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.key = key;</span><br><span class="line">            <span class="built_in">this</span>.value = value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">testMyLru</span><span class="params">()</span> &#123;</span><br><span class="line">    MyLru&lt;Integer, Integer&gt; lru = <span class="keyword">new</span> <span class="title class_">MyLru</span>&lt;&gt;(<span class="number">2</span>);</span><br><span class="line">    lru.put(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">    lru.put(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">    System.out.println(lru.get(<span class="number">1</span>));</span><br><span class="line">    lru.put(<span class="number">3</span>, <span class="number">3</span>);</span><br><span class="line">    System.out.println(lru.get(<span class="number">2</span>));</span><br><span class="line">    System.out.println(lru.get(<span class="number">3</span>));</span><br><span class="line">    lru.put(<span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line">    System.out.println(lru.get(<span class="number">1</span>));</span><br><span class="line">    System.out.println(lru.get(<span class="number">3</span>));</span><br><span class="line">    System.out.println(lru.get(<span class="number">4</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">移除末尾节点：[2,2]</span></span><br><span class="line"><span class="comment">null</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">移除末尾节点：[1,1]</span></span><br><span class="line"><span class="comment">null</span></span><br><span class="line"><span class="comment">3</span></span><br><span class="line"><span class="comment">4</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>参考： <a target="_blank" rel="noopener" href="https://juejin.im/post/5cedeac1e51d4556bc066eff">面试挂在了 LRU 缓存算法设计上</a></p>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本文实现LRU算法，使用自带的LinkedHashMap 和 双链表+HashMap形式实现。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/31/algorithm/003-lru-java/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/31/algorithm/003-lru-java/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/31/algorithm/003-lru-java/" data-id="cl1fw7fhh0008vkd3dgicb3iz" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/lru/" rel="tag">lru</a><span class="article-tag-list-count">1</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-elasticsearch/006-check-error" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/30/elasticsearch/006-check-error/" class="article-date">
+  <time datetime="2019-05-30T00:07:17.000Z" itemprop="datePublished">2019-05-30</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/30/elasticsearch/006-check-error/">ES启动错误：max file descriptors/max virtual memory</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>从ES启动报错里学习一些linux相关知识。</p>
+<p>环境： ES 5.6.16， centos7， JDK8</p>
+<h1 id="错误"><a href="#错误" class="headerlink" title="错误"></a>错误</h1><p>当我们修改了<code>network.host</code>配置的IP后，再次启动就会报错：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ERROR: [<span class="number">2</span>] bootstrap checks failed</span><br><span class="line">[<span class="number">1</span>]: max file descriptors [<span class="number">4096</span>] <span class="keyword">for</span> elasticsearch process is too low, increase to at least [<span class="number">65536</span>]</span><br><span class="line">[<span class="number">2</span>]: max virtual memory areas vm.max_map_count [<span class="number">65530</span>] is too low, increase to at least [<span class="number">262144</span>]</span><br></pre></td></tr></table></figure>
+<p>接下来就需要弄清楚这几个参数什么意思。</p>
+<h1 id="参数含义"><a href="#参数含义" class="headerlink" title="参数含义"></a>参数含义</h1><h2 id="max-file-descriptors"><a href="#max-file-descriptors" class="headerlink" title="max file descriptors"></a>max file descriptors</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6">关于文件描述符的解释</a>很常见，简单来说就是：<br>一个整数，描述符是文件元数据到文件本身的映射，可以用来引用文件，描述符是唯一的，可以在进程间共享。</p>
+<p>每个进程都有个映射文件物理地址的表格（0标准输入 1标准输出 2标准错误；3、4、5….就映射你打开过文件的地址），FileDescriptor 相当于这个1、2、3、4.</p>
+<p>那这个参数如何修改呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/security/limits.conf </span><br><span class="line"></span><br><span class="line"># 添加下面设置 root 是用户</span><br><span class="line"></span><br><span class="line">root soft nofile <span class="number">65536</span></span><br><span class="line">root hard nofile <span class="number">65536</span></span><br></pre></td></tr></table></figure>
+
+<p>重新登录使其生效，然后通过ulimit查看下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ulimit -n</span><br><span class="line">65536</span><br></pre></td></tr></table></figure>
+
+<h2 id="max-virtual-memory-areas-vm-max-map-count"><a href="#max-virtual-memory-areas-vm-max-map-count" class="headerlink" title="max virtual memory areas vm.max_map_count"></a>max virtual memory areas vm.max_map_count</h2><p><code>max_map_count</code>： 文件包含限制一个进程可以拥有的VMA(虚拟内存区域)的数量。虚拟内存区域是一个连续的虚拟地址空间区域。在进程的生命周期中，每当程序尝试在内存中映射文件，链接到共享内存段，或者分配堆空间的时候，这些区域将被创建。调优这个值将限制进程可拥有VMA的数量。限制一个进程拥有VMA的总数可能导致应用程序出错，因为当进程达到了VMA上线但又只能释放少量的内存给其他的内核进程使用时，操作系统会抛出内存不足的错误。如果你的操作系统在NORMAL区域仅占用少量的内存，那么调低这个值可以帮助释放内存给内核用。</p>
+<p>如何查看这个值？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sysctl -a | grep vm.max_map_count</span><br><span class="line">vm.max_map_count = 65536</span><br></pre></td></tr></table></figure>
+<p>可以看到太小，那如何修改呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">// 添加下面配置：</span></span><br><span class="line">vm.max_map_count=<span class="number">655360</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 并执行命令：</span></span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+
+<h1 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h1><h2 id="ulimit-a"><a href="#ulimit-a" class="headerlink" title="ulimit -a"></a>ulimit -a</h2><p>查看所有限制：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ ulimit -a</span><br><span class="line">core file size          (blocks, -c) 0</span><br><span class="line">data seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 63397</span><br><span class="line">max locked memory       (kbytes, -l) 64</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line">open files                      (-n) 65536</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line">max user processes              (-u) 4096</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure>
+
+<h2 id="sysctl-a"><a href="#sysctl-a" class="headerlink" title="sysctl -a"></a>sysctl -a</h2><p>这是关于设备、文件系统、内核、网络、虚拟资源的所有系统配置，很多。</p>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>从ES启动报错里学习一些linux相关知识。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/30/elasticsearch/006-check-error/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/30/elasticsearch/006-check-error/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/30/elasticsearch/006-check-error/" data-id="cl1fw7fje004gvkd38fqsh3gg" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a><span class="article-tag-list-count">7</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="article-tag-list-count">57</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-db/009-centos-uninstall-mysql" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/29/db/009-centos-uninstall-mysql/" class="article-date">
+  <time datetime="2019-05-29T00:38:01.000Z" itemprop="datePublished">2019-05-29</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/29/db/009-centos-uninstall-mysql/">centos完全卸载mysql</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>采用yum按照官方文档安装的mysql的卸载方式。</p>
+<h1 id="1-卸载mysql软件"><a href="#1-卸载mysql软件" class="headerlink" title="1.卸载mysql软件"></a>1.卸载mysql软件</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yum remove mysql</span></span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Resolving Dependencies</span><br><span class="line"><span class="meta prompt_">--&gt; </span><span class="language-bash">Running transaction check</span></span><br><span class="line"><span class="meta prompt_">---&gt; </span><span class="language-bash">Package mysql-community-client.x86_64 0:8.0.15-1.el7 will be erased</span></span><br><span class="line"><span class="meta prompt_">--&gt; </span><span class="language-bash">Processing Dependency: mysql-community-client(x86-64) &gt;= 8.0.0 <span class="keyword">for</span> package: mysql-community-server-8.0.15-1.el7.x86_64</span></span><br><span class="line"><span class="meta prompt_">--&gt; </span><span class="language-bash">Running transaction check</span></span><br><span class="line"><span class="meta prompt_">---&gt; </span><span class="language-bash">Package mysql-community-server.x86_64 0:8.0.15-1.el7 will be erased</span></span><br><span class="line"><span class="meta prompt_">--&gt; </span><span class="language-bash">Finished Dependency Resolution</span></span><br><span class="line"></span><br><span class="line">Dependencies Resolved</span><br><span class="line"></span><br><span class="line">================================================================================================================================================================================</span><br><span class="line"> Package                                          Arch                             Version                                   Repository                                    Size</span><br><span class="line">================================================================================================================================================================================</span><br><span class="line">Removing:</span><br><span class="line"> mysql-community-client                           x86_64                           8.0.15-1.el7                              @mysql80-community                           120 M</span><br><span class="line">Removing for dependencies:</span><br><span class="line"> mysql-community-server                           x86_64                           8.0.15-1.el7                              @mysql80-community                           1.6 G</span><br><span class="line"></span><br><span class="line">Transaction Summary</span><br><span class="line">================================================================================================================================================================================</span><br><span class="line">Remove  1 Package (+1 Dependent package)</span><br><span class="line"></span><br><span class="line">Installed size: 1.7 G</span><br><span class="line">Is this ok [y/N]: y</span><br><span class="line">Downloading packages:</span><br><span class="line">Running transaction check</span><br><span class="line">Running transaction test</span><br><span class="line">Transaction test succeeded</span><br><span class="line">Running transaction</span><br><span class="line">  Erasing    : mysql-community-server-8.0.15-1.el7.x86_64                                                                                                                   1/2 </span><br><span class="line">  Erasing    : mysql-community-client-8.0.15-1.el7.x86_64                                                                                                                   2/2 </span><br><span class="line">  Verifying  : mysql-community-client-8.0.15-1.el7.x86_64                                                                                                                   1/2 </span><br><span class="line">  Verifying  : mysql-community-server-8.0.15-1.el7.x86_64                                                                                                                   2/2 </span><br><span class="line"></span><br><span class="line">Removed:</span><br><span class="line">  mysql-community-client.x86_64 0:8.0.15-1.el7                                                                                                                                  </span><br><span class="line"></span><br><span class="line">Dependency Removed:</span><br><span class="line">  mysql-community-server.x86_64 0:8.0.15-1.el7                                                                                                                                  </span><br><span class="line"></span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
+<p>当然，可以看下有哪些安装包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">rpm -qa | grep mysql</span></span><br><span class="line">mysql80-community-release-el7-2.noarch</span><br><span class="line">mysql-community-common-8.0.15-1.el7.x86_64</span><br><span class="line">mysql-community-libs-8.0.15-1.el7.x86_64</span><br><span class="line">mysql-community-libs-compat-8.0.15-1.el7.x86_64</span><br></pre></td></tr></table></figure>
+
+<p>所以可以按需清楚：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yum remove mysql-server mysql-libs</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yum remove mysql80-community-release-el7-2</span></span><br></pre></td></tr></table></figure>
+<p>直到： <code>rpm -qa | grep mysql</code> 什么都查不出来。</p>
+<h1 id="2-清除数据"><a href="#2-清除数据" class="headerlink" title="2.清除数据"></a>2.清除数据</h1><p>默认情况下（如果改了配置，那根据自己的来）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">rm</span> -rf /var/lib/mysql</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">rm</span> /etc/my.cnf</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>采用yum按照官方文档安装的mysql的卸载方式。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/29/db/009-centos-uninstall-mysql/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/29/db/009-centos-uninstall-mysql/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/29/db/009-centos-uninstall-mysql/" data-id="cl1fw7fj7003yvkd3e8e82tb2" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos/" rel="tag">centos</a><span class="article-tag-list-count">5</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="article-tag-list-count">57</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="article-tag-list-count">5</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-git/004-gitlab-review-way" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/28/git/004-gitlab-review-way/" class="article-date">
+  <time datetime="2019-05-28T09:51:56.000Z" itemprop="datePublished">2019-05-28</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/28/git/004-gitlab-review-way/">使用gitlab进行review代码</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>review是一个重要的阶段：</p>
+<ol>
+<li>对自己可以约束写好代码</li>
+<li>对后来者更好的维护</li>
+</ol>
+<p>本文尝试用gitlab结合多分支实现review。</p>
+<p>假设主分支为develop，每隔开发者的分支为 develop-name, 下面是一个流程：</p>
+<ol>
+<li><p>每个人都在<code>develop-*</code>分支上工作，比如<code>develop-jimo</code>, 禁止直接push代码到主分支（当然，权限限制了这样做）</p>
+</li>
+<li><p>修改自己分支上的代码后，先提交：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git add .</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git commit -m <span class="string">&#x27;xxx&#x27;</span></span></span><br></pre></td></tr></table></figure></li>
+<li><p>然后更新主分支代码： 并解决冲突</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull origin develop</span></span><br></pre></td></tr></table></figure></li>
+<li><p>提交到自己的分支：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git push origin develop-jimo</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>一天中可能提交多次</p>
+</li>
+<li><p>当一天结束前，到gitlab上： 发起一个merge request(一天至少发起一次)，然后待大部分人都看了并发表评价，<br> 决定是否符合规范，是否可以合并到主分支：</p>
+<ol>
+<li>如果ok： 合并即可</li>
+<li>否则，开发者根据评价修改，重复这一周期</li>
+</ol>
+</li>
+<li><p>特殊说明： 如果同事之间工作具有先后关系，比如季蓉需要我写的组件，那么他可以等我写完了直接pull我的分支的代码：</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git branch -b develop-jirong</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull origin develop-jimo</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>review是一个重要的阶段：</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/28/git/004-gitlab-review-way/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/28/git/004-gitlab-review-way/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/28/git/004-gitlab-review-way/" data-id="cl1fw7fjk004vvkd396wj7o1s" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a><span class="article-tag-list-count">7</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a><span class="article-tag-list-count">3</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/" rel="tag">review</a><span class="article-tag-list-count">1</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-life/016-weekly-learn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/27/life/016-weekly-learn/" class="article-date">
+  <time datetime="2019-05-27T00:02:38.000Z" itemprop="datePublished">2019-05-27</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/27/life/016-weekly-learn/">2019-22-周报</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是2019年第22周周报。</p>
+<ol>
+<li><p>实践了一次<code>git reflog</code>命令，恢复了一段删除的代码，不只是只有<code>git log</code>哟, 另外需要理解重置的<code>--hard</code>参数会带来<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E9%87%8D%E7%BD%AE%E6%8F%AD%E5%AF%86">破坏性变化</a></p>
+</li>
+<li><a href="/2019/05/28/git/004-gitlab-review-way/" title="使用gitlab进行review代码">使用gitlab进行review代码</a>
+</li>
+<li><a href="/2019/05/29/db/009-centos-uninstall-mysql/" title="centos完全卸载mysql">centos完全卸载mysql</a>
+</li>
+<li><a href="/2019/05/30/elasticsearch/006-check-error/" title="ES启动错误：max file descriptors&#x2F;max virtual memory">ES启动错误：max file descriptors&#x2F;max virtual memory</a>
+</li>
+<li><a href="/2019/05/31/algorithm/003-lru-java/" title="java实现LRU算法">java实现LRU算法</a></li>
+</ol>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>这是2019年第22周周报。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/27/life/016-weekly-learn/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/27/life/016-weekly-learn/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/27/life/016-weekly-learn/" data-id="cl1fw7fk5006yvkd3bxdqh9zf" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/" rel="tag">life</a><span class="article-tag-list-count">32</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/week/" rel="tag">week</a><span class="article-tag-list-count">26</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-maven/005-maven-install-3dparty-jar" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/24/maven/005-maven-install-3dparty-jar/" class="article-date">
+  <time datetime="2019-05-24T00:35:28.000Z" itemprop="datePublished">2019-05-24</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/24/maven/005-maven-install-3dparty-jar/">maven安装第三方jar</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本次实验分为3部分：</p>
+<ol>
+<li>准备第三方jar</li>
+<li>安装到本地仓库</li>
+<li>使用</li>
+</ol>
+<h1 id="准备第三方jar"><a href="#准备第三方jar" class="headerlink" title="准备第三方jar"></a>准备第三方jar</h1><p>在这个以构建工具为主的时代，为什么还需要自己导jar包？ 如果你参与过国企的落后开发环境，不允许连外网，<br>所有工具都是U盘拷贝，包括jar包，这时候你会指天骂娘，这都什么年代了。</p>
+<p>例如，银行的支付会给一个打好的jar包和他们对接。我们需要把它安装到本地，<a href="/2019/03/20/java/037-jar-java-cmdline/" title="关于如何自己打包一个jar包参考">关于如何自己打包一个jar包参考</a>。</p>
+<p>我们就用上例中的Hello.jar.</p>
+<h1 id="安装到本地仓库"><a href="#安装到本地仓库" class="headerlink" title="安装到本地仓库"></a>安装到本地仓库</h1><p>参考官网： <a target="_blank" rel="noopener" href="https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html">https://maven.apache.org/guides/mini/guide-3rd-party-jars-local.html</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file -Dfile=&lt;path-to-file&gt; -DgroupId=&lt;group-id&gt; \</span><br><span class="line">    -DartifactId=&lt;artifact-id&gt; -Dversion=&lt;version&gt; -Dpackaging=&lt;packaging&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后实践：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mvn install:install-file -Dfile=Hello.jar \</span><br><span class="line">  -DgroupId=jimo -DartifactId=hello -Dversion=1.0.0 -Dpackaging=jar</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意的就是： groupId和artifactId只要不和已有的重复就行。</strong></p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>这个就简单了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;jimo&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;hello&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0.0&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本次实验分为3部分：</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/24/maven/005-maven-install-3dparty-jar/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/24/maven/005-maven-install-3dparty-jar/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/24/maven/005-maven-install-3dparty-jar/" data-id="cl1fw7fn100h7vkd33d0j3d4e" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/" rel="tag">maven</a><span class="article-tag-list-count">11</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-cloudcompute/016-docker-install-common" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/23/cloudcompute/016-docker-install-common/" class="article-date">
+  <time datetime="2019-05-23T05:34:01.000Z" itemprop="datePublished">2019-05-23</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/23/cloudcompute/016-docker-install-common/">常见docker安装应用</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文记录下操作步骤： <a target="_blank" rel="noopener" href="https://juejin.im/post/5ce531b65188252d215ed8b7">https://juejin.im/post/5ce531b65188252d215ed8b7</a></p>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本文记录下操作步骤： <a target="_blank" rel="noopener" href="https://juejin.im/post/5ce531b65188252d215ed8b7">https://juejin.im/post/5ce531b65188252d215ed8b7</a></p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/23/cloudcompute/016-docker-install-common/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/23/cloudcompute/016-docker-install-common/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/23/cloudcompute/016-docker-install-common/" data-id="cl1fw7fio002xvkd33cmrbhre" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="article-tag-list-count">16</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-tools/015-idea-plugins" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/23/tools/015-idea-plugins/" class="article-date">
+  <time datetime="2019-05-23T00:44:18.000Z" itemprop="datePublished">2019-05-23</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/23/tools/015-idea-plugins/">那些必须尝试的idea plugin</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文记录下idea经常使用的插件，要么极大的丰富了体验，要么提高了效率。</p>
+<h1 id="提高效率类"><a href="#提高效率类" class="headerlink" title="提高效率类"></a>提高效率类</h1><ol>
+<li><p>alibaba java coding guidelines: 写java的必备</p>
+</li>
+<li><p>BashSupport: 写shell脚本必备</p>
+</li>
+<li><p>Free Mybatis plugin + Mybatis Log plugin： xml方法跳转， 完整sql日志输出</p>
+</li>
+<li><p>Maven helper: 可视化依赖分析，解决冲突</p>
+</li>
+</ol>
+<h1 id="丰富体验类"><a href="#丰富体验类" class="headerlink" title="丰富体验类"></a>丰富体验类</h1><ol>
+<li><p>activate-power-mode + power mode II</p>
+</li>
+<li><p>background image plus</p>
+</li>
+</ol>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本文记录下idea经常使用的插件，要么极大的丰富了体验，要么提高了效率。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/23/tools/015-idea-plugins/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/23/tools/015-idea-plugins/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/23/tools/015-idea-plugins/" data-id="cl1fw7fo800lbvkd34n5624wt" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/idea/" rel="tag">idea</a><span class="article-tag-list-count">3</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-maven/004-build-private-maven-repo-by-archiva" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/22/maven/004-build-private-maven-repo-by-archiva/" class="article-date">
+  <time datetime="2019-05-22T06:51:37.000Z" itemprop="datePublished">2019-05-22</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/22/maven/004-build-private-maven-repo-by-archiva/">使用archiva搭建maven私有库</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文</p>
+<h1 id="搭建私有库的软件"><a href="#搭建私有库的软件" class="headerlink" title="搭建私有库的软件"></a>搭建私有库的软件</h1><p>从文档：<a target="_blank" rel="noopener" href="https://maven.apache.org/repository-management.html">https://maven.apache.org/repository-management.html</a>可看出<br>仓库管理软件很多，放在第一位的肯定是官方推荐的。</p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p><a target="_blank" rel="noopener" href="https://archiva.apache.org/download.cgi">https://archiva.apache.org/download.cgi</a></p>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./bin/archiva console (Linux, Mac, Solaris)</span><br><span class="line"></span><br><span class="line">.\bin\archiva.bat console (Windows)</span><br></pre></td></tr></table></figure>
+<p>console的日志会打印在终端，还有以下参数： <code>console | start | stop | restart | status | dump</code></p>
+<p>默认是8080端口，访问 <a target="_blank" rel="noopener" href="http://localhost:8080/">http://localhost:8080</a> 即可.</p>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><ol>
+<li><p>新建一个admin用户</p>
+</li>
+<li><p>修改配置</p>
+</li>
+</ol>
+<p>默认是有2个仓库： internal和snapshot，访问<a target="_blank" rel="noopener" href="http://localhost:8080/repository/internal/">http://localhost:8080/repository/internal/</a>就可以<br>看到熟悉的软件列表。</p>
+<ol start="3">
+<li><a target="_blank" rel="noopener" href="https://archiva.apache.org/docs/2.2.4/userguide/using-repository.html">全局使用</a></li>
+</ol>
+<p>直接修改<code>~/.m2/setting.xml</code>的mirror就行，全部依赖就会从本地去获取，本地没有再从中央仓库拉取：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- omitted xml --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>archiva.default<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://repo.mycompany.com:8080/repository/internal/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>external:*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- omitted xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="高级使用"><a href="#高级使用" class="headerlink" title="高级使用"></a>高级使用</h1><p>修改中心仓库地址，改为更快的镜像：</p>
+<img src="/2019/05/22/maven/004-build-private-maven-repo-by-archiva/000.png" class="">
+
+
+
+
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本文</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/22/maven/004-build-private-maven-repo-by-archiva/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/22/maven/004-build-private-maven-repo-by-archiva/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/22/maven/004-build-private-maven-repo-by-archiva/" data-id="cl1fw7fn000h5vkd3ez0084y9" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/archiva/" rel="tag">archiva</a><span class="article-tag-list-count">1</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a><span class="article-tag-list-count">104</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/maven/" rel="tag">maven</a><span class="article-tag-list-count">11</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-js/008-webpack-hot-swap-failed-not-feel-change" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/19/js/008-webpack-hot-swap-failed-not-feel-change/" class="article-date">
+  <time datetime="2019-05-19T04:50:03.000Z" itemprop="datePublished">2019-05-19</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/19/js/008-webpack-hot-swap-failed-not-feel-change/">webpack热更新失败-检测不到文件变化</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本项目是一个使用webpack构建的vue项目，一切都正常，开始可以热更新，后来文件多了，发现直接删除磁盘上的东西可以热更新，<br>而在IDE里修改文件不行，经过思考，发现是一个参数决定了。</p>
+<p>开发环境是ubuntu。</p>
+<p>Webpack 的热部署功能是使用 inotify 来监视文件变化，其中 <code>fs.inotify.max_user_watches</code> 表示同一用户同时可以添加的watch数目（watch一般是针对目录，决定了同时同一用户可以监控的目录数量）</p>
+<p>因此，查看了一下系统当前的 max_user_watches 值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat /proc/sys/fs/inotify/max_user_watches</span><br><span class="line"><span class="number">8192</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>8192是默认值，可能是这个值太小，而我的app下的文件目录太多，于是试着修改一下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo fs.<span class="property">inotify</span>.<span class="property">max_user_watches</span>=<span class="number">524288</span> | sudo tee -a /etc/sysctl.<span class="property">conf</span> &amp;&amp; sudo sysctl -p</span><br></pre></td></tr></table></figure>
+<p>修改后查看一下修改结果</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat /proc/sys/fs/inotify/max_user_watches</span><br><span class="line"><span class="number">524288</span></span><br></pre></td></tr></table></figure>
+
+<p>现在就可以了，估计windows下不会出现。</p>
+<h1 id="永久生效"><a href="#永久生效" class="headerlink" title="永久生效"></a>永久生效</h1><p>上述操作只是当前有效，要永久生效，需要修改配置文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;fs.inotify.max_user_watches=524288&quot; | sudo tee -a /etc/sysctl.conf</span><br><span class="line">sudo sysctl -p</span><br></pre></td></tr></table></figure>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本项目是一个使用webpack构建的vue项目，一切都正常，开始可以热更新，后来文件多了，发现直接删除磁盘上的东西可以热更新，<br>而在IDE里修改文件不行，经过思考，发现是一个参数决定了。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/19/js/008-webpack-hot-swap-failed-not-feel-change/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/19/js/008-webpack-hot-swap-failed-not-feel-change/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/19/js/008-webpack-hot-swap-failed-not-feel-change/" data-id="cl1fw7fjw0060vkd3e8az4d7n" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a><span class="article-tag-list-count">7</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="article-tag-list-count">3</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="article-tag-list-count">2</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-life/015-weekly-learn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/05/05/life/015-weekly-learn/" class="article-date">
+  <time datetime="2019-05-05T01:01:45.000Z" itemprop="datePublished">2019-05-05</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/05/life/015-weekly-learn/">2019-19-周报</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是2019年第19周周报，由于18周放了五一节，记录太少，遂综合到19周。</p>
+<ol>
+<li><p>Hystrix的请求缓存， 请求合并（collapser）</p>
+</li>
+<li><p>学习了mysql的innoDB的数据页存储结构。</p>
+</li>
+<li><p>学习gateway如何配置动态路由</p>
+</li>
+<li><p>学习写架构设计文档</p>
+</li>
+<li><p>学习vuex</p>
+</li>
+</ol>
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>这是2019年第19周周报，由于18周放了五一节，记录太少，遂综合到19周。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/05/05/life/015-weekly-learn/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/05/05/life/015-weekly-learn/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/05/05/life/015-weekly-learn/" data-id="cl1fw7fk4006rvkd3gtkcaaq3" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/life/" rel="tag">life</a><span class="article-tag-list-count">32</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/week/" rel="tag">week</a><span class="article-tag-list-count">26</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-js/007-axios-vue" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/30/js/007-axios-vue/" class="article-date">
+  <time datetime="2019-04-30T05:31:46.000Z" itemprop="datePublished">2019-04-30</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/30/js/007-axios-vue/">axios的使用记录</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>axios很强大，但有一些踩过的坑。</p>
+<h1 id="在vue里构造实例"><a href="#在vue里构造实例" class="headerlink" title="在vue里构造实例"></a>在vue里构造实例</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Full config:  https://github.com/axios/axios#request-config</span></span><br><span class="line"><span class="comment">// axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || &#x27;&#x27;;</span></span><br><span class="line"><span class="comment">// axios.defaults.headers.common[&#x27;Authorization&#x27;] = AUTH_TOKEN;</span></span><br><span class="line"><span class="comment">// axios.defaults.headers.post[&#x27;Content-Type&#x27;] = &#x27;application/x-www-form-urlencoded&#x27;;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> config = &#123;</span><br><span class="line">    <span class="comment">// baseURL: process.env.baseURL || process.env.apiUrl || &quot;&quot;,</span></span><br><span class="line">    <span class="attr">withCredentials</span>: <span class="literal">true</span>, <span class="comment">// Check cross-site Access-Control</span></span><br><span class="line">    <span class="comment">// timeout: 60 * 1000, // Timeout</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> _axios = axios.<span class="title function_">create</span>(config);</span><br></pre></td></tr></table></figure>
+
+<h1 id="设置拦截器"><a href="#设置拦截器" class="headerlink" title="设置拦截器"></a>设置拦截器</h1><p>推荐使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">_axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line">    <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">        <span class="comment">// Do something before request is sent</span></span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">        <span class="comment">// Do something with request error</span></span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Add a response interceptor</span></span><br><span class="line">_axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(</span><br><span class="line">    <span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">        <span class="comment">// Do something with response data</span></span><br><span class="line">        <span class="keyword">return</span> response;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">        <span class="comment">// Do something with response error</span></span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h1 id="application-x2F-x-www-form-urlencoded"><a href="#application-x2F-x-www-form-urlencoded" class="headerlink" title="application&#x2F;x-www-form-urlencoded"></a>application&#x2F;x-www-form-urlencoded</h1><p>axios的content-type默认是application&#x2F;json的，需要修改header才能发送application&#x2F;x-www-form-urlencoded请求。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">_axios.<span class="title function_">post</span>(<span class="title function_">constructUrl</span>(apiType, url), data || &#123;&#125;, &#123;</span><br><span class="line">    <span class="attr">headers</span>: &#123;</span><br><span class="line">        <span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/x-www-form-urlencoded; charset=UTF-8&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).<span class="title function_">then</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">handleResult</span>(res.<span class="property">data</span>, callback);</span><br><span class="line">&#125;).<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">handleError</span>(err, errorHandle);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>但是还没完，axios会把我们传入的data（json对象）序列化为json字符串，这样后台收不到参数。</p>
+<p>修改： 使用qs模块序列化， 在request前置拦截器里判断，然后调用<code>qs.stringify</code>方法，<br>把json对象序列化为&amp;连接的键值对参数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> qs <span class="keyword">from</span> <span class="string">&#x27;qs&#x27;</span>;</span><br><span class="line"></span><br><span class="line">_axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(</span><br><span class="line">    <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">        config.<span class="property">headers</span>.<span class="property">Authentication</span> = storage.<span class="title function_">get</span>(<span class="string">&quot;TOKEN&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (config.<span class="property">data</span></span><br><span class="line">            &amp;&amp; config.<span class="property">headers</span>[<span class="string">&#x27;Content-Type&#x27;</span>] === <span class="string">&#x27;application/x-www-form-urlencoded; charset=UTF-8&#x27;</span>) &#123;</span><br><span class="line">            config.<span class="property">data</span> = qs.<span class="title function_">stringify</span>(config.<span class="property">data</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> config;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">        <span class="comment">// Do something with request error</span></span><br><span class="line">        <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>axios很强大，但有一些踩过的坑。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/04/30/js/007-axios-vue/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/04/30/js/007-axios-vue/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/04/30/js/007-axios-vue/" data-id="cl1fw7fjw005yvkd3eokyequv" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a><span class="article-tag-list-count">7</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a><span class="article-tag-list-count">3</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+    <article id="post-js/006-webpack-first-view" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/26/js/006-webpack-first-view/" class="article-date">
+  <time datetime="2019-04-26T01:24:51.000Z" itemprop="datePublished">2019-04-26</time>
+</a>
+      
+  </div>
+  <div class="article-inner">
+    
+      
+        <header class="article-header">
+          
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/26/js/006-webpack-first-view/">初次遇见webpack</a>
+    </h1>
+  
+
+        </header>
+        
+          <!-- <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是作者对webpack的一些初见。</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p><a target="_blank" rel="noopener" href="https://www.webpackjs.com/concepts/">官方文档</a> 写得很详细，当读完之后，写下自己的见解。</p>
+<ol>
+<li><p>是什么？<br> 就一个js打包工具，包括js文件，css，html和其他资源。</p>
+</li>
+<li><p>有哪些基本概念需要了解？<br> 无非：</p>
+<ol>
+<li>入口： 指定js文件入口</li>
+<li>出口： 打包存放位置</li>
+<li>loader： 对非js文件的转换工具</li>
+<li>plugin： 强大的插件，在整个生命周期（打包、压缩、环境变量）都可用</li>
+</ol>
+</li>
+<li><p>支持多模式： 开发、生产、测试等</p>
+</li>
+</ol>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h1><p>建立一个依赖图。</p>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p><a target="_blank" rel="noopener" href="https://webpack.js.org/guides/getting-started">参考官方文档</a></p>
+<p>跟着做很简单，注意1点，先安装npx： <code>npm install -g npx</code>.</p>
+<p>结果：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">jack@<span class="attr">jack</span>:~<span class="regexp">/workspace/</span>temp/webpack-demo$ ll</span><br><span class="line">总用量 <span class="number">36</span></span><br><span class="line">drwxr-xr-x   <span class="number">5</span> jack jack  <span class="number">4096</span> <span class="number">4</span>月  <span class="number">26</span> <span class="number">10</span>:<span class="number">02</span> ./</span><br><span class="line">drwxr-xr-x   <span class="number">6</span> jack jack  <span class="number">4096</span> <span class="number">4</span>月  <span class="number">26</span> <span class="number">09</span>:<span class="number">35</span> ../</span><br><span class="line">drwxr-xr-x   <span class="number">2</span> jack jack  <span class="number">4096</span> <span class="number">4</span>月  <span class="number">26</span> <span class="number">10</span>:<span class="number">00</span> dist/</span><br><span class="line">drwxr-xr-x <span class="number">318</span> jack jack <span class="number">12288</span> <span class="number">4</span>月  <span class="number">26</span> <span class="number">10</span>:<span class="number">00</span> node_modules/</span><br><span class="line">-rw-r--r--   <span class="number">1</span> jack jack   <span class="number">379</span> <span class="number">4</span>月  <span class="number">26</span> <span class="number">10</span>:<span class="number">02</span> package.<span class="property">json</span></span><br><span class="line">drwxr-xr-x   <span class="number">2</span> jack jack  <span class="number">4096</span> <span class="number">4</span>月  <span class="number">26</span> <span class="number">09</span>:<span class="number">43</span> src/</span><br><span class="line">-rw-r--r--   <span class="number">1</span> jack jack   <span class="number">163</span> <span class="number">4</span>月  <span class="number">26</span> <span class="number">09</span>:<span class="number">46</span> webpack.<span class="property">config</span>.<span class="property">js</span></span><br><span class="line">jack@<span class="attr">jack</span>:~<span class="regexp">/workspace/</span>temp/webpack-demo$ tree dist/</span><br><span class="line">dist/</span><br><span class="line">├── index.<span class="property">html</span></span><br><span class="line">└── main.<span class="property">js</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> directories, <span class="number">2</span> files</span><br><span class="line">jack@<span class="attr">jack</span>:~<span class="regexp">/workspace/</span>temp/webpack-demo$ tree src/</span><br><span class="line">src/</span><br><span class="line">└── index.<span class="property">js</span></span><br><span class="line"></span><br><span class="line"><span class="number">0</span> directories, <span class="number">1</span> file</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+      
+    </div> -->
+          <div class="article-entry" itemprop="articleBody">
+            
+              
+                
+                      
+                        
+                          
+                            
+                              
+                                
+                                  
+                                    <p>
+                                      <p>本文是作者对webpack的一些初见。</p>
+
+                                        <p>
+                                          
+                                            
+                                              
+                                                      
+          </div>
+    <p class="article-more-link">
+      <a href="/2019/04/26/js/006-webpack-first-view/#more">
+        Read More
+      </a>
+    </p>
+    <!-- <div class="article-more-link">
+      <a href="/2019/04/26/js/006-webpack-first-view/#more">
+        read more
+      </a>
+    </div> -->
+    
+
+
+      <footer class="article-footer">
+        <a data-url="http://http//jimolonely.github.io/2019/04/26/js/006-webpack-first-view/" data-id="cl1fw7fju005tvkd32s4r3na3" class="article-share-link">
+          Share
+        </a>
+        
+            
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a><span class="article-tag-list-count">7</span></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="article-tag-list-count">2</span></li></ul>
+
+      </footer>
+      </div>
+      
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/7/">下一页 &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UI-test/" rel="tag">UI test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/algorithm/" rel="tag">algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/android/" rel="tag">android</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/annotation/" rel="tag">annotation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ansible/" rel="tag">ansible</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ant/" rel="tag">ant</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/aop/" rel="tag">aop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/archiva/" rel="tag">archiva</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/asciidoc/" rel="tag">asciidoc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awk/" rel="tag">awk</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/basic/" rel="tag">basic</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/big-data/" rel="tag">big data</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blockchain/" rel="tag">blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos/" rel="tag">centos</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cglib/" rel="tag">cglib</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/checkstyle/" rel="tag">checkstyle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome/" rel="tag">chrome</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/computer-principle/" rel="tag">computer principle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cors/" rel="tag">cors</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/data-structure/" rel="tag">data structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-pattern/" rel="tag">design-pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es/" rel="tag">es</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eureka/" rel="tag">eureka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/firefox/" rel="tag">firefox</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flask/" rel="tag">flask</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/geohash/" rel="tag">geohash</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/geomesa/" rel="tag">geomesa</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab/" rel="tag">gitlab</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/groovy/" rel="tag">groovy</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hadoop/" rel="tag">hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hbase/" rel="tag">hbase</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/http/" rel="tag">http</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/idea/" rel="tag">idea</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ip/" rel="tag">ip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/" rel="tag">javascript</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/junit/" rel="tag">junit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyter/" rel="tag">jupyter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jupyterhub/" rel="tag">jupyterhub</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jvm/" rel="tag">jvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jwt/" rel="tag">jwt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/katalon/" rel="tag">katalon</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/keepalived/" rel="tag">keepalived</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/latex/" rel="tag">latex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux-kernel/" rel="tag">linux kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/load-balance/" rel="tag">load balance</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log/" rel="tag">log</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log4j/" rel="tag">log4j</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log4j12/" rel="tag">log4j12</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logback/" rel="tag">logback</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lombok/" rel="tag">lombok</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lru/" rel="tag">lru</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/" rel="tag">lucene</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/magnet/" rel="tag">magnet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/make/" rel="tag">make</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/makefile/" rel="tag">makefile</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/manjaro/" rel="tag">manjaro</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/" rel="tag">math</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/maven/" rel="tag">maven</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/md5/" rel="tag">md5</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mhtml/" rel="tag">mhtml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/microservice/" rel="tag">microservice</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/" rel="tag">music</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/notebook/" rel="tag">notebook</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nvidia/" rel="tag">nvidia</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oauth/" rel="tag">oauth</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/optimization/" rel="tag">optimization</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandas/" rel="tag">pandas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pandoc/" rel="tag">pandoc</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pgsql/" rel="tag">pgsql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pyspark/" rel="tag">pyspark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/quartz/" rel="tag">quartz</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/resource/" rel="tag">resource</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sbt/" rel="tag">sbt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scala/" rel="tag">scala</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/shell/" rel="tag">shell</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slf4j/" rel="tag">slf4j</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/" rel="tag">spark</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring/" rel="tag">spring</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud/" rel="tag">spring cloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring-boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sql/" rel="tag">sql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sqlserver/" rel="tag">sqlserver</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/statistics/" rel="tag">statistics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/syslog/" rel="tag">syslog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/term/" rel="tag">term</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/" rel="tag">test</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/texlive/" rel="tag">texlive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thread/" rel="tag">thread</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tomcat/" rel="tag">tomcat</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tool/" rel="tag">tool</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/urban-computing/" rel="tag">urban computing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/" rel="tag">video</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vpn/" rel="tag">vpn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/" rel="tag">web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-dav/" rel="tag">web-dav</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/week/" rel="tag">week</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/windows/" rel="tag">windows</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wordcloud/" rel="tag">wordcloud</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/work/" rel="tag">work</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xml/" rel="tag">xml</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zipkin/" rel="tag">zipkin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/" rel="tag">zookeeper</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag">云计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%85%83%E7%BC%96%E7%A8%8B/" rel="tag">元编程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/" rel="tag">城市计算</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9E%B6%E6%9E%84/" rel="tag">架构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%A6%82%E5%BF%B5/" rel="tag">概念</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%88%AC%E8%99%AB/" rel="tag">爬虫</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10.53px;">AI</a> <a href="/tags/UI-test/" style="font-size: 10px;">UI test</a> <a href="/tags/algorithm/" style="font-size: 10.53px;">algorithm</a> <a href="/tags/android/" style="font-size: 10.53px;">android</a> <a href="/tags/annotation/" style="font-size: 10px;">annotation</a> <a href="/tags/ansible/" style="font-size: 13.16px;">ansible</a> <a href="/tags/ant/" style="font-size: 10px;">ant</a> <a href="/tags/aop/" style="font-size: 10px;">aop</a> <a href="/tags/archiva/" style="font-size: 10px;">archiva</a> <a href="/tags/asciidoc/" style="font-size: 10px;">asciidoc</a> <a href="/tags/awk/" style="font-size: 10px;">awk</a> <a href="/tags/axios/" style="font-size: 10px;">axios</a> <a href="/tags/basic/" style="font-size: 13.16px;">basic</a> <a href="/tags/big-data/" style="font-size: 10.53px;">big data</a> <a href="/tags/blockchain/" style="font-size: 10px;">blockchain</a> <a href="/tags/centos/" style="font-size: 12.11px;">centos</a> <a href="/tags/cglib/" style="font-size: 10px;">cglib</a> <a href="/tags/checkstyle/" style="font-size: 10px;">checkstyle</a> <a href="/tags/chrome/" style="font-size: 11.05px;">chrome</a> <a href="/tags/computer-principle/" style="font-size: 10px;">computer principle</a> <a href="/tags/cors/" style="font-size: 10.53px;">cors</a> <a href="/tags/data-structure/" style="font-size: 10px;">data structure</a> <a href="/tags/design-pattern/" style="font-size: 10.53px;">design-pattern</a> <a href="/tags/docker/" style="font-size: 17.89px;">docker</a> <a href="/tags/elasticsearch/" style="font-size: 13.16px;">elasticsearch</a> <a href="/tags/es/" style="font-size: 10px;">es</a> <a href="/tags/eureka/" style="font-size: 10px;">eureka</a> <a href="/tags/firefox/" style="font-size: 10px;">firefox</a> <a href="/tags/flask/" style="font-size: 10px;">flask</a> <a href="/tags/geohash/" style="font-size: 10px;">geohash</a> <a href="/tags/geomesa/" style="font-size: 10px;">geomesa</a> <a href="/tags/git/" style="font-size: 13.16px;">git</a> <a href="/tags/gitlab/" style="font-size: 11.05px;">gitlab</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/groovy/" style="font-size: 10px;">groovy</a> <a href="/tags/hadoop/" style="font-size: 10.53px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 11.58px;">hbase</a> <a href="/tags/hexo/" style="font-size: 10.53px;">hexo</a> <a href="/tags/html/" style="font-size: 10.53px;">html</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/idea/" style="font-size: 11.05px;">idea</a> <a href="/tags/ip/" style="font-size: 10px;">ip</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/javascript/" style="font-size: 11.58px;">javascript</a> <a href="/tags/js/" style="font-size: 13.16px;">js</a> <a href="/tags/junit/" style="font-size: 10px;">junit</a> <a href="/tags/jupyter/" style="font-size: 10px;">jupyter</a> <a href="/tags/jupyterhub/" style="font-size: 10.53px;">jupyterhub</a> <a href="/tags/jvm/" style="font-size: 10px;">jvm</a> <a href="/tags/jwt/" style="font-size: 10px;">jwt</a> <a href="/tags/k8s/" style="font-size: 11.05px;">k8s</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/katalon/" style="font-size: 10px;">katalon</a> <a href="/tags/keepalived/" style="font-size: 10.53px;">keepalived</a> <a href="/tags/latex/" style="font-size: 11.05px;">latex</a> <a href="/tags/life/" style="font-size: 18.95px;">life</a> <a href="/tags/linux/" style="font-size: 19.47px;">linux</a> <a href="/tags/linux-kernel/" style="font-size: 10px;">linux kernel</a> <a href="/tags/load-balance/" style="font-size: 10px;">load balance</a> <a href="/tags/log/" style="font-size: 10px;">log</a> <a href="/tags/log4j/" style="font-size: 10px;">log4j</a> <a href="/tags/log4j12/" style="font-size: 10px;">log4j12</a> <a href="/tags/logback/" style="font-size: 10px;">logback</a> <a href="/tags/lombok/" style="font-size: 10px;">lombok</a> <a href="/tags/lru/" style="font-size: 10px;">lru</a> <a href="/tags/lucene/" style="font-size: 10px;">lucene</a> <a href="/tags/magnet/" style="font-size: 10px;">magnet</a> <a href="/tags/make/" style="font-size: 10px;">make</a> <a href="/tags/makefile/" style="font-size: 10px;">makefile</a> <a href="/tags/manjaro/" style="font-size: 10px;">manjaro</a> <a href="/tags/math/" style="font-size: 11.05px;">math</a> <a href="/tags/maven/" style="font-size: 15.26px;">maven</a> <a href="/tags/md5/" style="font-size: 10px;">md5</a> <a href="/tags/mhtml/" style="font-size: 10px;">mhtml</a> <a href="/tags/microservice/" style="font-size: 14.21px;">microservice</a> <a href="/tags/music/" style="font-size: 10px;">music</a> <a href="/tags/mybatis/" style="font-size: 11.05px;">mybatis</a> <a href="/tags/mysql/" style="font-size: 12.11px;">mysql</a> <a href="/tags/nginx/" style="font-size: 12.63px;">nginx</a> <a href="/tags/notebook/" style="font-size: 10px;">notebook</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/nvidia/" style="font-size: 10px;">nvidia</a> <a href="/tags/oauth/" style="font-size: 10px;">oauth</a> <a href="/tags/openstack/" style="font-size: 12.11px;">openstack</a> <a href="/tags/optimization/" style="font-size: 10px;">optimization</a> <a href="/tags/pandas/" style="font-size: 10px;">pandas</a> <a href="/tags/pandoc/" style="font-size: 10px;">pandoc</a> <a href="/tags/pgsql/" style="font-size: 11.58px;">pgsql</a> <a href="/tags/probability/" style="font-size: 10px;">probability</a> <a href="/tags/pyspark/" style="font-size: 10px;">pyspark</a> <a href="/tags/python/" style="font-size: 17.37px;">python</a> <a href="/tags/quartz/" style="font-size: 10.53px;">quartz</a> <a href="/tags/react/" style="font-size: 10px;">react</a> <a href="/tags/redis/" style="font-size: 15.79px;">redis</a> <a href="/tags/resource/" style="font-size: 10px;">resource</a> <a href="/tags/review/" style="font-size: 10px;">review</a> <a href="/tags/sbt/" style="font-size: 10px;">sbt</a> <a href="/tags/scala/" style="font-size: 14.74px;">scala</a> <a href="/tags/shell/" style="font-size: 12.63px;">shell</a> <a href="/tags/slf4j/" style="font-size: 10px;">slf4j</a> <a href="/tags/spark/" style="font-size: 14.74px;">spark</a> <a href="/tags/spring/" style="font-size: 15.79px;">spring</a> <a href="/tags/spring-cloud/" style="font-size: 12.11px;">spring cloud</a> <a href="/tags/spring-boot/" style="font-size: 13.68px;">spring-boot</a> <a href="/tags/springboot/" style="font-size: 11.05px;">springboot</a> <a href="/tags/sql/" style="font-size: 11.05px;">sql</a> <a href="/tags/sqlserver/" style="font-size: 10.53px;">sqlserver</a> <a href="/tags/ssh/" style="font-size: 12.11px;">ssh</a> <a href="/tags/statistics/" style="font-size: 10px;">statistics</a> <a href="/tags/syslog/" style="font-size: 10px;">syslog</a> <a href="/tags/term/" style="font-size: 10px;">term</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/texlive/" style="font-size: 10px;">texlive</a> <a href="/tags/thread/" style="font-size: 10px;">thread</a> <a href="/tags/tomcat/" style="font-size: 13.16px;">tomcat</a> <a href="/tags/tool/" style="font-size: 16.84px;">tool</a> <a href="/tags/ubuntu/" style="font-size: 16.32px;">ubuntu</a> <a href="/tags/urban-computing/" style="font-size: 10px;">urban computing</a> <a href="/tags/video/" style="font-size: 10px;">video</a> <a href="/tags/vim/" style="font-size: 10.53px;">vim</a> <a href="/tags/vpn/" style="font-size: 10px;">vpn</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/vue/" style="font-size: 11.05px;">vue</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/web-dav/" style="font-size: 10px;">web-dav</a> <a href="/tags/webpack/" style="font-size: 10.53px;">webpack</a> <a href="/tags/week/" style="font-size: 18.42px;">week</a> <a href="/tags/windows/" style="font-size: 10px;">windows</a> <a href="/tags/wordcloud/" style="font-size: 10px;">wordcloud</a> <a href="/tags/work/" style="font-size: 10px;">work</a> <a href="/tags/xml/" style="font-size: 10px;">xml</a> <a href="/tags/zipkin/" style="font-size: 10px;">zipkin</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" style="font-size: 12.63px;">云计算</a> <a href="/tags/%E5%85%83%E7%BC%96%E7%A8%8B/" style="font-size: 10px;">元编程</a> <a href="/tags/%E5%9F%8E%E5%B8%82%E8%AE%A1%E7%AE%97/" style="font-size: 10px;">城市计算</a> <a href="/tags/%E6%9E%B6%E6%9E%84/" style="font-size: 10px;">架构</a> <a href="/tags/%E6%A6%82%E5%BF%B5/" style="font-size: 10px;">概念</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 10px;">爬虫</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 10px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">九月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">七月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/03/31/redis/000-redis-interview/">Redis面试总结202203</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/27/maven/009-maven-deploy/">使用IDEA部署jar包到maven仓库(maven deploy)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/24/java/075-pluggable-annotation-processing-lombok/">Pluggable Annotation Processing的讲解与实践</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/18/life/036-weekly-learn/">2019-42-周报</a>
+          </li>
+        
+          <li>
+            <a href="/2019/10/15/shell/003-carriage-linechange/">r command not found</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 Jackpler<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">home</a>
+  
+    <a href="/archives" class="mobile-nav-link">archives</a>
+  
+    <a href="/about" class="mobile-nav-link">about</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
